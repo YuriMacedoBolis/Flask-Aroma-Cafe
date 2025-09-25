@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      <div class="carrinho-container">
+        <h1>Meu Histórico de Pedidos</h1>
+        {% if pedidos %}
+            <ul class="lista-pedidos">
+                {% for pedido in pedidos %}
+                <li class="item-pedido">
+                    <div class="pedido-header">
+                        <h3>Pedido #{{ pedido.id }}</h3>
+                        <p>Data: {{ pedido.data_pedido.strftime('%d/%m/%Y') }}</p>
+                    </div>
+                    <ul class="itens-pedido">
+                        {% for item in pedido.itens %}
+                            <li>{{ item.quantidade }}x {{ item.produto.nome }} - R$ {{ "%.2f"|format(item.preco_unitario) }}</li>
+                        {% endfor %}
+                    </ul>
+                    <div class="pedido-footer">
+                        <p>Status: <span class="status-{{ pedido.status|lower }}">{{ pedido.status }}</span></p>
+                        <p>Total: R$ {{ "%.2f"|format(pedido.total) }}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="pedidos-vazio">Você ainda não tem pedidos.</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="cardapio-container">
+        <h1>Nosso Cardápio</h1>
+        <div class="produtos-grid">
+            {% for produto in produtos %}
+                <div class="produto-card">
+                    {% if produto.url_imagem %}
+                        <img src="{{ url_for('static', filename=produto.url_imagem) }}" alt="{{ produto.nome }}">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='imagens/sem-imagem.png') }}" alt="Sem imagem">
+                    {% endif %}
+
+                    <h3 class="produto-nome">{{ produto.nome }}</h3>
+                    <p class="produto-descricao">{{ produto.descricao }}</p>
+                    <p class="produto-preco">R$ {{ "%.2f"|format(produto.preco) }}</p>
+                    <form action="{{ url_for('adicionar_ao_carrinho', produto_id=produto.id) }}" method="POST">
+                        <button class="btn-comprar" type="submit">Adicionar ao carrinho</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

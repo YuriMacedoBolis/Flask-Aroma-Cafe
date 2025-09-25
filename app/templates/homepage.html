@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-flutuante">
+        <div class="caixa-flutuante">
+            <h2>Bem Vindo ao <div class="Aroma_e_Cafe">Aroma e Café</div></h2>
+            <p>Onde cada grão de café conta uma história. Mais do que uma simples loja, 
+                somos um refúgio para os amantes de experiências autênticas. Nossa seleção de cafés é feita por especialistas, 
+                que buscam a harmonia perfeita entre sabor e aroma. Na Aroma e Café, acreditamos que a qualidade está nos detalhes 
+                e que a beleza de um produto pode tornar o seu dia extraordinário. 
+                Venha descobrir a arte de uma bebida feita com paixão e carinho.
+            </p>
+        </div>
+    </div>
+
+    <div class="carrossel-container">
+        <div class="carrossel-inner">
+            <img src="{{ url_for('static', filename='imagens/grao_cafe.jpg') }}" alt="Grãos de Café">
+            <img src="{{ url_for('static', filename='imagens/xicara_cafe.jpg') }}" alt="Xícara de Café">
+            <img src="{{ url_for('static', filename='imagens/bolo.jpg') }}" alt="Bolo de Café">
+            <img src="{{ url_for('static', filename='imagens/cookie.jpg') }}" alt="Cookies de Café">
+            <img src="{{ url_for('static', filename='imagens/chocolate.jpg') }}" alt="Chocolate Gourmet">
+            
+            <img src="{{ url_for('static', filename='imagens/grao_cafe.jpg') }}" alt="Grãos de Café">
+            <img src="{{ url_for('static', filename='imagens/xicara_cafe.jpg') }}" alt="Xícara de Café">
+            <img src="{{ url_for('static', filename='imagens/bolo.jpg') }}" alt="Bolo de Café">
+            <img src="{{ url_for('static', filename='imagens/cookie.jpg') }}" alt="Cookies de Café">
+            <img src="{{ url_for('static', filename='imagens/chocolate.jpg') }}" alt="Chocolate Gourmet">
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="tabela">
+        <h1 class="estoque_titulo">Estoque Atual</h1>
+        
+        <table class="estoque">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>R$ {{ "%.2f"|format(produto.preco) }}</td>
+                    <td>{{ produto.quantidade }}</td>
+                    <td>
+                        <div class="btn_estoque">
+                            <a href="{{ url_for('editar_produto', produto_id=produto.id) }}" class="btn-editar" >Editar</a> 
+                            <form action="{{ url_for('deletar_produto', produto_id=produto.id) }}" method="POST" >
+                                <input  type="submit" value="Excluir" onclick="return confirm('Tem certeza que deseja excluir este produto?');" class="btn-excluir">
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <a class="adicionar" href="{{ url_for('add_produto') }}">Adicionar Novo Produto</a>
+        </table>
+    </div>
+{% endblock %}

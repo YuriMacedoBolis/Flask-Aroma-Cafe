@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="carrinho-container">
+        <h1>Meu Carrinho</h1>
+
+        {% if produtos %}
+            <ul class="lista-carrinho">
+                {% for produto in produtos %}
+                    <li class="item-carrinho">
+                        <div class="item-info">
+                            <img src="{{ url_for('static', filename=produto.url_imagem) }}" alt="{{ produto.nome }}">
+                            <div class="detalhes-item">
+                                <h3>{{ produto.nome }}</h3>
+                                <p>Preço: R$ {{ "%.2f"|format(produto.preco) }}</p>
+                                <p>Quantidade: 1</p>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="resumo-carrinho">
+                <form action="{{ url_for('finalizar_pedido') }}" method="POST">
+                    <button class="btn-finalizar" type="submit">Finalizar Pedido</button>
+                </form>
+            </div>
+        {% else %}
+            <p class="carrinho-vazio">Seu carrinho está vazio.</p>
+        {% endif %}
+    </div>
+{% endblock %}

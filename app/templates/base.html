@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma e Café</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body {% block body_class %}{% endblock %}>
+
+    <nav>
+        <h1>Aroma e <div class="sabor">Café</div></h1>
+        <ul>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('homepage') }}">Início</a></li>
+                <li><a href="{{url_for('cardapio')}}">Cardápio</a></li>
+                
+                {% if current_user.is_funcionario %}
+                <li><a href="{{ url_for('estoque') }}">Estoque</a></li>
+                <li><a href="{{ url_for('add_produto') }}">Adicionar Produto</a></li>
+                {% endif %}
+                
+                <li><a href="{{url_for('carrinho')}}">Carrinho</a></li>
+                <li><a href="{{url_for('meus_pedidos')}}">Pedidos</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><img class="nav-status" src="{{url_for('static' , filename='imagens/userG.svg')}}" alt=""></li>
+                {% else %}
+                <li><a href="{{ url_for('homepage') }}">Início</a></li>
+                <li><a href="{{url_for('cardapio')}}">Cardápio</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('registrar') }}">Registrar</a></li>
+                <li><img class="nav-status-off" src="{{url_for('static' , filename='imagens/userR.svg')}}" alt=""></li>
+            {% endif %}
+                            
+
+            <li><a href="https://github.com/YuriMacedoBolis" target="_blank"><img class="github" src="{{ url_for('static', filename='imagens/github.svg') }}" alt="Github"></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="mensagens-flash">
+                    {% for category, message in messages %}
+                        <div class="alerta {{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+</body>
+</html>
