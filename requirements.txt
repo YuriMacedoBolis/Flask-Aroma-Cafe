@@ -6,3 +6,4 @@ Flask-Login
 Flask-Bcrypt
 python-dotenv
 gunicorn
+psycopg2
