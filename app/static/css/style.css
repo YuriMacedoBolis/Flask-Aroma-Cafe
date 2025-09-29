@@ -83,11 +83,15 @@ nav a:hover {
 /* CONTEÚDO PRINCIPAL (PADDING PARA NÃO FICAR ESCONDIDO PELA NAV) */
 main {
     padding-top: 80px;
+
 }
 
 .homepage-body {
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
+    overflow-x: hidden;
+    
 }
 
 .text-container{
@@ -440,18 +444,15 @@ th, td {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
+    width: 100%;
     justify-content: center;
     align-items: stretch;
 }
 
-.produtos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    justify-content: center;
-
-    /* garante que todos os cards ocupem a mesma altura */
-    align-items: stretch;
+.produto-card .imagem_produto{
+    width: auto;
+    height: 200px;
+    border-radius: 10px;
 }
 
 .produto-card {
@@ -461,23 +462,19 @@ th, td {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s ease-in-out;
-
-    /* aqui o truque */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* empurra o botão para o fim */
+    justify-content: space-between; 
     transition: transform 0.3s ease-in-out;
 }
 
 .produto-card:hover {
-    transform: translateY(-10px);
+    transform: scale(1.1);
 }
 
 
-
-
 .produto-conteudo {
-    flex-grow: 1; /* descrição + preço ocupam o meio */
+    flex-grow: 1; 
 }
 
 .produto-preco {
@@ -496,8 +493,6 @@ th, td {
     cursor: pointer;
     text-transform: uppercase;
     font-weight: bold;
-
-    /* garante que fique grudado no final */
     margin-top: auto;
 }
 

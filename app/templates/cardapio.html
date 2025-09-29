@@ -7,7 +7,7 @@
             {% for produto in produtos %}
                 <div class="produto-card">
                     {% if produto.url_imagem %}
-                        <img src="{{ url_for('static', filename=produto.url_imagem) }}" alt="{{ produto.nome }}">
+                        <img class="imagem_produto" src="{{ url_for('static', filename=produto.url_imagem) }}" alt="{{ produto.nome }}">
                     {% else %}
                         <img src="{{ url_for('static', filename='imagens/sem-imagem.png') }}" alt="Sem imagem">
                     {% endif %}
